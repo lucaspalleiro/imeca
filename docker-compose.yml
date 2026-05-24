@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  imeca-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: imeca-dashboard
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # If Supabase is configured later, users can pass environment variables here:
+      # - NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+      # - NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

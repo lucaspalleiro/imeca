@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b; /* zinc-950 */
+  --foreground: #f4f4f5; /* zinc-100 */
+  --card: #121214;
+  --card-hover: #18181c;
+  --border: #222226;
+  --accent: #f97316; /* Safety Orange */
+  --accent-hover: #ea580c;
+  --muted: #71717a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-industrial-card: var(--card);
+  --color-industrial-card-hover: var(--card-hover);
+  --color-industrial-border: var(--border);
+  --color-industrial-orange: var(--accent);
+  --color-industrial-orange-hover: var(--accent-hover);
+  --color-industrial-muted: var(--muted);
+  
+  --color-industrial-yellow: #eab308;
+  --color-industrial-red: #ef4444;
+  --color-industrial-green: #22c55e;
+  --color-industrial-blue: #3b82f6;
+  
+  --font-sans: var(--font-outfit), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* Scrollbar Customization for SCADA/Industrial Feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* TV Mode Layout Utilities */
+.tv-mode-grid {
+  grid-template-rows: auto 1fr;
+}
+
+/* Subtle micro-animations to prevent OLED burn-in */
+@keyframes tvJitter {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(0.5px, 0.5px); }
+  50% { transform: translate(-0.5px, 0.5px); }
+  75% { transform: translate(-0.5px, -0.5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.tv-burn-in-protection {
+  animation: tvJitter 300s infinite linear;
+}
+
+/* Bento Grid Card Base Styling */
+.bento-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.bento-card:hover {
+  border-color: #3f3f46;
+  background: var(--card-hover);
+}
+
+/* High Contrast Accent Borders */
+.bento-card-active {
+  border-left: 3px solid var(--accent);
+}
+
+.bento-card-critical {
+  border-left: 3px solid #ef4444;
+}
+
+.bento-card-warning {
+  border-left: 3px solid #eab308;
+}
+
+.bento-card-success {
+  border-left: 3px solid #22c55e;
+}
